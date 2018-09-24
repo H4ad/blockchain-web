@@ -29,4 +29,24 @@ class HomeController extends Controller
 
         return view('home.success_contact');
     }
+
+    /**
+     * Retorna para a página de sobre.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function about()
+    {
+        return redirect('/#about');
+    }
+
+    /**
+     * Retorna para a página de contato.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function contact()
+    {
+        return redirect('/#contact');
+    }
 }

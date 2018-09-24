@@ -5,5 +5,7 @@
     "/js/bootstrap.js": "/js/bootstrap.js",
     "/js/jquery.magnific-popup.min.js": "/js/jquery.magnific-popup.min.js",
     "/js/jquery.magnific-popup.js": "/js/jquery.magnific-popup.js",
+    "/js/views/management/home/loadUserSubscriptionsChart.js": "/js/views/management/home/loadUserSubscriptionsChart.js",
+    "/js/views/management/home/loadStockInformationChart.js": "/js/views/management/home/loadStockInformationChart.js",
     "/js/views/management/home/loadDailyCharts.js": "/js/views/management/home/loadDailyCharts.js"
 }

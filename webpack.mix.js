@@ -28,4 +28,5 @@ mix.js('node_modules/magnific-popup/dist/jquery.magnific-popup.min.js', 'public/
  * Home
  */
 mix.js('resources/assets/js/views/management/home/loadDailyCharts.js', 'public/js/views/management/home/');
-
+mix.js('resources/assets/js/views/management/home/loadUserSubscriptionsChart.js', 'public/js/views/management/home/');
+mix.js('resources/assets/js/views/management/home/loadStockInformationChart.js', 'public/js/views/management/home/');

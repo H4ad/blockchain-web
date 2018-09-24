@@ -12,7 +12,7 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
   {{-- Token csrf --}}
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -47,6 +47,7 @@
       </script>
     </div>
   </div>
+
   <script src="{{ asset('js/bootstrap.js') }}"></script>
 
   <!-- Place this tag in your head or just before your close body tag. -->
@@ -59,10 +60,12 @@
 
   <!-- Chartist JS -->
   <script src="{{ asset('js/plugins/chartist.min.js') }}"></script>
+
   <!--  Notifications Plugin    -->
   <script src="{{ asset('js/plugins/bootstrap-notify.js') }}"></script>
+
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{{ asset('js/material-dashboard.js?v=2.1.0') }}"></script>
+  <script src="{{ asset('js/material-dashboard.js') }}"></script>
 
   {{-- Scripts da aplicação que serão adicionados conforme necessidade --}}
   @stack('scripts')
@@ -227,13 +230,6 @@
 
         });
       });
-    });
-  </script>
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
-
     });
   </script>
 </body>

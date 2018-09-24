@@ -60,60 +60,67 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 50);
+/******/ 	return __webpack_require__(__webpack_require__.s = 52);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 50:
+/***/ 52:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(51);
+module.exports = __webpack_require__(53);
 
 
 /***/ }),
 
-/***/ 51:
+/***/ 53:
 /***/ (function(module, exports) {
 
 /**
- * Script para popular o chart de Vendas diárias.
+ * Script para popular o chart de usuários inscritos
  */
 
 $(document).ready(function () {
-	loadDailyCharts();
+	loadUserSubscriptionsChart();
 });
 
 $(window).resize(function () {
 	setTimeout(function () {
-		loadDailyCharts();
+		loadUserSubscriptionsChart();
 	}, 500);
 });
 
-function loadDailyCharts() {
-	if ($('#dailySalesChart').length != 0) {
-		dataDailySalesChart = {
-			labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-			series: [[12, 17, 7, 17, 23, 18, 38]]
+function loadUserSubscriptionsChart() {
+	if ($('#userSubscriptionsViewChart').length != 0) {
+		var dataWebsiteViewsChart = {
+			labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+			series: [[542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]]
 		};
-
-		optionsDailySalesChart = {
-			lineSmooth: Chartist.Interpolation.cardinal({
-				tension: 0
-			}),
+		var optionsWebsiteViewsChart = {
+			axisX: {
+				showGrid: false
+			},
 			low: 0,
-			high: 100, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+			high: 1000,
 			chartPadding: {
 				top: 0,
-				right: 0,
+				right: 5,
 				bottom: 0,
 				left: 0
 			}
 		};
+		var responsiveOptions = [['screen and (max-width: 640px)', {
+			seriesBarDistance: 5,
+			axisX: {
+				labelInterpolationFnc: function labelInterpolationFnc(value) {
+					return value[0];
+				}
+			}
+		}]];
+		var userSubscriptionsData = Chartist.Bar('#userSubscriptionsViewChart', dataWebsiteViewsChart, optionsWebsiteViewsChart, responsiveOptions);
 
-		var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
-
-		md.startAnimationForLineChart(dailySalesChart);
+		//start animation for the Emails Subscription Chart
+		md.startAnimationForBarChart(userSubscriptionsData);
 	}
 }
 

@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <h4 class="card-title">{{ trans('messages.daily_sells') }}</h4>
-    <p id="dailySalesChartText" class="card-category">{{ trans('messages.dont_have_information') }}</p>
+    <p id="dailySalesChartMessage" class="card-category">{{ trans('messages.dont_have_information') }}</p>
   </div>
   <div class="card-footer">
     <div class="stats">
@@ -15,5 +15,5 @@
 </div>
 
 @push('scripts')
-<script src="{{ asset('js/views/management/home/loadDailyCharts.js') }}"
+<script src="{{ asset('js/views/management/home/loadDailyCharts.js') }}"></script>
 @endpush

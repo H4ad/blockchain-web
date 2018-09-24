@@ -14,7 +14,10 @@
 /**
  * Rotas da página de início
  */
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('homepage');
+Route::get('/sobre', 'HomeController@about')->name('sobre');
+Route::get('/contato', 'HomeController@contact')->name('contato');
+
 Route::post('/', 'HomeController@store');
 
 /**

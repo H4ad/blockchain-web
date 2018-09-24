@@ -39,5 +39,10 @@ return [
 	'do_login' => 'Entre',
 	'daily_sells' => 'Vendas diárias',
 	'dont_have_information' => 'Não há informações',
-	'users_subscriptions' => 'Inscrições de usuários'
+	'users_subscriptions' => 'Usuários inscritos',
+	'stock_information' => 'Informações de estoque',
+	'last_24_hours' => 'Ultimas 24 horas',
+	'solds' => 'Vendas',
+	'entering' => 'Entrada',
+	'exchanges' => 'Trocas',
 ];

@@ -60,49 +60,49 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 50);
+/******/ 	return __webpack_require__(__webpack_require__.s = 54);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 50:
+/***/ 54:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(51);
+module.exports = __webpack_require__(55);
 
 
 /***/ }),
 
-/***/ 51:
+/***/ 55:
 /***/ (function(module, exports) {
 
 /**
- * Script para popular o chart de Vendas diárias.
- */
+* Script para popular o chart de informação de estoque
+*/
 
 $(document).ready(function () {
-	loadDailyCharts();
+	loadStockInformationCharts();
 });
 
 $(window).resize(function () {
 	setTimeout(function () {
-		loadDailyCharts();
+		loadStockInformationCharts();
 	}, 500);
 });
 
-function loadDailyCharts() {
-	if ($('#dailySalesChart').length != 0) {
-		dataDailySalesChart = {
-			labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-			series: [[12, 17, 7, 17, 23, 18, 38]]
+function loadStockInformationCharts() {
+	if ($('#stockInformationChart').length != 0) {
+		dataStockInformationChart = {
+			labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
+			series: [[230, 750, 450, 300, 280, 240, 200, 190]]
 		};
 
-		optionsDailySalesChart = {
+		optionsStockInformationChart = {
 			lineSmooth: Chartist.Interpolation.cardinal({
 				tension: 0
 			}),
 			low: 0,
-			high: 100, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+			high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
 			chartPadding: {
 				top: 0,
 				right: 0,
@@ -111,9 +111,9 @@ function loadDailyCharts() {
 			}
 		};
 
-		var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+		var stockInformationChart = new Chartist.Line('#stockInformationChart', dataStockInformationChart, optionsStockInformationChart);
 
-		md.startAnimationForLineChart(dailySalesChart);
+		md.startAnimationForLineChart(stockInformationChart);
 	}
 }
 
