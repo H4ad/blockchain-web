@@ -12,18 +12,17 @@
     <title>Blockchain</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom fonts for this template -->
-    <link href="fortawesome/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/freelancer.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-    <!-- Plugin CSS -->
-    <link href="dimsemenov/magnific-popup/dist/magnific-popup.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
 
-    <!-- Custom styles for this template -->
-    <link href="css/freelancer.min.css" rel="stylesheet">
 
   </head>
 
@@ -45,21 +44,25 @@
     <!-- Footer Section -->
     @include ('layouts.home.footer')
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="components/jquery/jquery.min.js"></script>
-    <script src="twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="gymadarasz/jquery.easing/jquery.easing.min.js"></script>
-    <script src="dimsemenov/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+    <!-- Magnific Popup core JS file -->
+    <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+
+    <!-- Magnific Popup core JS file -->
+    <script src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
+
+    <!-- Magnific Popup core JS file -->
+    <script src="{{ asset('js/jquery.easing.compatibility.js') }}"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+    <script src="{{ asset('js/jqBootstrapValidation.js') }}"></script>
+    <script src="{{ asset('js/contact_me.js') }}"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/freelancer.min.js"></script>
-
+    <script src="{{ asset('js/freelancer.min.js') }}"></script>
   </body>
 
 </html>

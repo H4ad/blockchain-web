@@ -1,0 +1,43 @@
+<?php
+/**
+ * Arquivo com textos e mensagens exibidas para o usuário.
+ */
+return [
+	'begin' => 'Início',
+	'profile' => 'Perfil',
+	'transactions' => 'Transações',
+	'canteen' => 'Cantina',
+	'my_wallet' => 'Minha Carteira',
+	'home_balance' => 'Saldo: R$ :money',
+	'placeholder_search' => 'Pesquisar...',
+	'sell_product' => 'Vender produto',
+	'exchange_product' => 'Trocar produto',
+	'to_reverse_product' => 'Estornar produto',
+	'buy_product' => 'Comprar produto',
+	'quality' => 'Qualidade',
+	'products' => 'Produtos',
+	'add' => 'Adicionar',
+	'list' => 'Listar',
+	'enter' => 'Entrar',
+	'about' => 'Sobre',
+	'contact' => 'Contato',
+	'notifications' => 'Notificações',
+	'logout' => 'Sair',
+	'remember_me' => 'Lembre-me',
+	'password' => 'Senha',
+	'password_confirmation' => 'Confirmação de senha',
+	'email' => 'E-mail',
+	'please_enter' => 'Por favor, entre',
+	'register' => 'Registrar',
+	'please_register' => 'Por favor, preencha os campos a seguir',
+	'name' => 'Nome',
+	'password_need_min' => 'Sua senha precisa ter no mínimo 6 caracteres.',
+	'register_enter' => 'Registrar-se',
+	'dont_have_account' => 'Não possui uma conta ?',
+	'do_register' => 'Registre-se',
+	'already_have_account' => 'Já possui uma conta ?',
+	'do_login' => 'Entre',
+	'daily_sells' => 'Vendas diárias',
+	'dont_have_information' => 'Não há informações',
+	'users_subscriptions' => 'Inscrições de usuários'
+];

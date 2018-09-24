@@ -1,0 +1,9 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/main.css": "/css/main.css",
+    "/js/bootstrap.js": "/js/bootstrap.js",
+    "/js/jquery.magnific-popup.min.js": "/js/jquery.magnific-popup.min.js",
+    "/js/jquery.magnific-popup.js": "/js/jquery.magnific-popup.js",
+    "/js/views/management/home/loadDailyCharts.js": "/js/views/management/home/loadDailyCharts.js"
+}
