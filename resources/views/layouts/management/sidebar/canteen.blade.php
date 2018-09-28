@@ -5,13 +5,6 @@
   </a>
   <div class="collapse pt-3 {{ (Request::is('cantina/*')) ? 'show' : '' }}" id="list_canteen">
     <ul>
-      <li class="nav-item {{ (Request::is('cantina/vender')) ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('vender') }}">
-          <p {{ (Request::is('cantina/vender')) ? 'class=text-white' : '' }}>
-            {{ trans('messages.sell_product') }}
-          </p>
-        </a>
-      </li>
       <li class="nav-item {{ (Request::is('cantina/trocar')) ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('trocar') }}">
           <p {{ (Request::is('cantina/trocar')) ? 'class=text-white' : '' }}>

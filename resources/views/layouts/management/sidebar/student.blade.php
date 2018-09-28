@@ -1,9 +1,3 @@
-<li class="nav-item {{ (Request::is('carteira') || Request::is('carteira/*'))  ? 'active' : '' }}">
-	<a class="nav-link" href="{{ route('carteira') }}">
-		<i class="material-icons">credit_card</i>
-		<p>{{ trans('messages.my_wallet') }}</p>
-	</a>
-</li>
 <li class="nav-item">
   <a class="nav-link" data-target="#list_canteen" data-toggle="collapse">
     <i class="material-icons">store</i>

@@ -25,6 +25,7 @@
     </div>
     <small id="passwordHelpBlock" class="form-text text-muted">{{ trans('messages.dont_have_account') }} <a href="{{ route('register') }}">{{ trans('messages.do_register') }}</a></small>
 
+    @include('errors.print')
     <button type="submit" class="btn btn-outline-primary btn-lg btn-block">{{ trans('messages.enter')}}</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
 </form>

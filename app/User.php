@@ -27,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Retorna as notificações que devem ser exibidas no menu.
+     *
+     * @return array
+     */
+    public function getMenuNotifications()
+    {
+        return $this->unreadNotifications()->where('type', 'menu')->get();
+    }
 }

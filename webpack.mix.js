@@ -20,6 +20,8 @@ mix.js('node_modules/magnific-popup/dist/jquery.magnific-popup.js', 'public/js')
 	sass('node_modules/magnific-popup/src/css/main.scss', 'public/css');
 mix.js('node_modules/magnific-popup/dist/jquery.magnific-popup.min.js', 'public/js');
 
+mix.sass('resources/assets/sass/select.scss', 'public/css');
+mix.sass('resources/assets/sass/prettifycode.scss', 'public/css');
 /**
  * Scripts do Management
  */

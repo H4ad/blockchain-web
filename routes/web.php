@@ -27,28 +27,27 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
 	Route::get('/inicio', 'ManagementController@management')->name('inicio');
-	Route::get('/perfil', 'ManagementController@management')->name('perfil');
-	Route::get('/transacoes', 'ManagementController@management')->name('transacoes');
-	Route::get('/carteira', 'ManagementController@management')->name('carteira');
+	Route::get('/perfil', 'ManagementController@profile')->name('perfil');
+	Route::get('/transacoes', 'ManagementController@transactions')->name('transacoes');
 
 	Route::middleware('role:canteen')->group(function () {
 		Route::prefix('/cantina')->group(function () {
 			Route::get('/', 'ManagementController@management')->name('cantina');
-			Route::get('trocar', 'ManagementController@management')->name('trocar');
-			Route::get('vender', 'ManagementController@management')->name('vender');
-			Route::get('estornar', 'ManagementController@management')->name('estornar');
-			Route::get('qualidade', 'ManagementController@management')->name('qualidade');
+			Route::get('trocar', 'CanteenController@exchange')->name('trocar');
+			Route::get('estornar', 'CanteenController@to_reverse')->name('estornar');
+			Route::get('qualidade', 'CanteenController@quality')->name('qualidade');
 		});
 
 		Route::prefix('/produtos')->group(function () {
-			Route::get('adicionar', 'ManagementController@management')->name('produtos.adicionar');
-			Route::get('listar', 'ManagementController@management')->name('produtos.listar');
+			Route::get('adicionar', 'CanteenController@add')->name('produtos.adicionar');
+			Route::get('listar', 'CanteenController@list')->name('produtos.listar');
+			Route::post('atualizar', 'CanteenController@list')->name('produtos.atualizar');
 		});
 	});
 
 	Route::middleware('role:student')->group(function () {
 		Route::prefix('/cantina')->group(function () {
-			Route::get('comprar', 'ManagementController@management')->name('comprar');
+			Route::get('comprar', 'CanteenController@buy')->name('comprar');
 		});
 	});
 });
