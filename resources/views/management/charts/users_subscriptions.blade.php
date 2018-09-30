@@ -15,5 +15,5 @@
 </div>
 
 @push('scripts')
-<script src="{{ asset('js/views/management/home/loadUserSubscriptionsChart.js') }}"></script>
+<script src="{{ secure_asset('js/views/management/home/loadUserSubscriptionsChart.js') }}"></script>
 @endpush

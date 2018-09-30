@@ -1,5 +1,5 @@
 @push('css')
-<link type="text/css" rel="stylesheet" href="{{ asset('css/prettifycode.css') }}" />
+<link type="text/css" rel="stylesheet" href="{{ secure_asset('css/prettifycode.css') }}" />
 @endpush
 
 {{-- Modal que exibe as informações em de uma transação --}}
