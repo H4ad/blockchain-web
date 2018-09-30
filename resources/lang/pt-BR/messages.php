@@ -87,4 +87,12 @@ return [
 	'delete' => 'Deletar',
 	'update' => 'Atualizar',
 	'update_product' => 'Atualizar produto',
+	'failed_register_blockchain' => 'Houve um erro e não foi possível completar o registro, acesse <i href="/blockchain">Minhas Informações</i> para completar seu cadastro.',
+	'success_register_blockchain' => 'Seu cadastro foi feito corretamente, acesse <i href="/blockchain">Minhas Informações</i> para visualizar suas informações armazenadas na Blockchain.',
+	'blockchain_informations' => 'Informações da Blockchain',
+	'blockchain_informations_text_01' => 'Aqui você pode visualizar quais informações suas estão registradas na Blockchain',
+	'blockchain_loading_text_01' => 'Obtendo uma nova identificação',
+	'blockchain_loading_text_02' => 'Verificando se já há uma identificação cadastrada...',
+	'blockchain_loading_text_03' => 'Esperando resposta da Blockchain...',
+	'blockchain_loading_text_04' => 'Finalizando, estamos armazenando sua identificação...',
 ];

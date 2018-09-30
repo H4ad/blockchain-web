@@ -1,0 +1,56 @@
+.progress {
+  margin: 15px;
+}
+
+.progress .progress-bar.active {
+  font-weight: 700;
+  -webkit-animation: progress-bar-stripes .5s linear infinite;
+          animation: progress-bar-stripes .5s linear infinite;
+}
+
+.dotdotdot:after {
+  font-weight: 300;
+  content: '...';
+  display: inline-block;
+  width: 20px;
+  text-align: left;
+  -webkit-animation: dotdotdot 1.5s linear infinite;
+          animation: dotdotdot 1.5s linear infinite;
+}
+
+@-webkit-keyframes dotdotdot {
+  0% {
+    content: '...';
+  }
+
+  25% {
+    content: '';
+  }
+
+  50% {
+    content: '.';
+  }
+
+  75% {
+    content: '..';
+  }
+}
+
+@keyframes dotdotdot {
+  0% {
+    content: '...';
+  }
+
+  25% {
+    content: '';
+  }
+
+  50% {
+    content: '.';
+  }
+
+  75% {
+    content: '..';
+  }
+}
+

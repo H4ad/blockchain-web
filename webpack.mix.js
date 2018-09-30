@@ -32,3 +32,10 @@ mix.sass('resources/assets/sass/prettifycode.scss', 'public/css');
 mix.js('resources/assets/js/views/management/home/loadDailyCharts.js', 'public/js/views/management/home/');
 mix.js('resources/assets/js/views/management/home/loadUserSubscriptionsChart.js', 'public/js/views/management/home/');
 mix.js('resources/assets/js/views/management/home/loadStockInformationChart.js', 'public/js/views/management/home/');
+
+/**
+ * Blockchain
+ */
+
+mix.js('resources/assets/js/views/management/blockchain/getAlunoInfo.js', 'public/js/views/management/blockchain/');
+mix.sass('resources/assets/sass/progressbar.scss', 'public/css');

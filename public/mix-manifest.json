@@ -4,10 +4,12 @@
     "/css/main.css": "/css/main.css",
     "/css/select.css": "/css/select.css",
     "/css/prettifycode.css": "/css/prettifycode.css",
+    "/css/progressbar.css": "/css/progressbar.css",
     "/js/bootstrap.js": "/js/bootstrap.js",
     "/js/jquery.magnific-popup.min.js": "/js/jquery.magnific-popup.min.js",
     "/js/jquery.magnific-popup.js": "/js/jquery.magnific-popup.js",
     "/js/views/management/home/loadUserSubscriptionsChart.js": "/js/views/management/home/loadUserSubscriptionsChart.js",
     "/js/views/management/home/loadStockInformationChart.js": "/js/views/management/home/loadStockInformationChart.js",
-    "/js/views/management/home/loadDailyCharts.js": "/js/views/management/home/loadDailyCharts.js"
+    "/js/views/management/home/loadDailyCharts.js": "/js/views/management/home/loadDailyCharts.js",
+    "/js/views/management/blockchain/getAlunoInfo.js": "/js/views/management/blockchain/getAlunoInfo.js"
 }

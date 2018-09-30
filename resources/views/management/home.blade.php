@@ -21,10 +21,19 @@
 
 	@endrole
 
+	@if(is_null(\Auth::user()->participant))
+
+	<div id="cardDontHasParticipant">
+		@include('management.cards.dont_has_participant')
+	</div>
+
+	@endif
+
 	<div class="card">
 		<div class="card-body">
 			<h5>{{ trans('messages.welcome') }} {{ Auth::user()->name }}!</h5>
 		</div>
 	</div>
+
 </div>
 @endsection

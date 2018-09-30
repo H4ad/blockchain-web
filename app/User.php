@@ -2,9 +2,10 @@
 
 namespace App;
 
+use App\BlockchainUser;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'participant_id'
+        'name', 'email', 'password'
     ];
 
     /**
@@ -36,5 +37,41 @@ class User extends Authenticatable
     public function getMenuNotifications()
     {
         return $this->unreadNotifications()->where('type', 'menu')->get();
+    }
+
+    /**
+     * Define a relação entre User e BlockchainUser como um-para-um.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function participant()
+    {
+        return $this->hasOne(BlockchainUser::class);
+    }
+
+    /**
+     * Retorna o tipo do usuário válido para a Blockchain.
+     *
+     * @return string
+     */
+    public function getTypeByRole()
+    {
+        if($this->hasRole('student'))
+            return 'Aluno';
+
+        return 'Orgaos';
+    }
+
+    /**
+     * Retorna a classe do usuário válido para a Blockchain.
+     *
+     * @return string
+     */
+    public function getClassByRole()
+    {
+        if($this->hasRole('student'))
+            return 'org.transacoes.cantina.Aluno';
+
+        return 'org.transacoes.cantina.Orgao';
     }
 }
