@@ -141,4 +141,5 @@ function showErrorMessage()
 	      align: 'right'
 	  }
 	});
+	document.getElementById('cardDontHasParticipant').remove();
 }
