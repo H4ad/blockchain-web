@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth')->group(function () {
+	Route::get('/blockchain', 'ManagementController@blockchain')->name('blockchain');
+	Route::post('/blockchain/{participant_id}', 'ManagementController@save_blockchain');
 });

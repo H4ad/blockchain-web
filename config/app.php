@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'api_url' => env('API_BLOCKCHAIN_URL', 'http://localhost/api'),
+    'api_url' => env('API_BLOCKCHAIN_URL', 'http://localhost:3000/api'),
 
     /*
     |--------------------------------------------------------------------------

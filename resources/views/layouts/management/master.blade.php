@@ -18,6 +18,7 @@
 
   {{-- Token csrf --}}
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="api_blockchain" content="{{ config('app.api_url') }}">
 
   {{-- Select customizado --}}
   <link href="{{ asset('css/select.css') }}" rel="stylesheet">

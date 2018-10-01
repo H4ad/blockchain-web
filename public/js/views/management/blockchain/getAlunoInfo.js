@@ -103,10 +103,10 @@ $(document).ready(function () {
 			$('#progressIdentifierText').text('Finalizando, estamos armazenando sua identificação...');
 			saveBlockchainUser(response.data.ParticipanteId);
 		}).catch(function (error) {
+			console.log(error);
+
 			getBlockchainUser();
 			return Promise.reject(error);
-		}).then(function () {
-			document.getElementById('cardDontHasParticipant').remove();
 		});
 	});
 });
@@ -115,7 +115,7 @@ $(document).ready(function () {
  * Caso não haja um usuário com o mesmo id, ele pede para o Laravel retornar um válido e então tenta registrar na Blockchain
  */
 function getBlockchainUser() {
-	var getUrl = window.location.origin + '/blockchain';
+	var getUrl = window.location.origin + '/api/blockchain';
 
 	axios({
 		method: 'get',
@@ -165,7 +165,7 @@ function saveBlockchain(response) {
  * Salva as informações do usuário da Blockchain pelo id dele no Laravel
  */
 function saveBlockchainUser(id) {
-	var getUrl = window.location.origin + '/blockchain/' + id;
+	var getUrl = window.location.origin + '/api/blockchain/' + id;
 	axios({
 		method: 'post',
 		url: getUrl,
@@ -194,6 +194,8 @@ function showSuccessfulMessage() {
 			align: 'right'
 		}
 	});
+
+	$('#progressFooter').html('<button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>');
 }
 
 function showErrorMessage() {
@@ -209,6 +211,8 @@ function showErrorMessage() {
 			align: 'right'
 		}
 	});
+
+	$('#progressFooter').html('<button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>');
 }
 
 /***/ })

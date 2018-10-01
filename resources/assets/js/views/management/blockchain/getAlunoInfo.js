@@ -28,10 +28,10 @@ $(document).ready(function() {
 		    saveBlockchainUser(response.data.ParticipanteId);
 		})
 		.catch(error => {
+			console.log(error);
+
 			getBlockchainUser();
       		return Promise.reject(error);
-		}).then(function (){
-			document.getElementById('cardDontHasParticipant').remove();
 		});
 	});
 });
@@ -41,7 +41,7 @@ $(document).ready(function() {
  */
 function getBlockchainUser()
 {
-	var getUrl = window.location.origin + '/blockchain';
+	var getUrl = window.location.origin + '/api/blockchain';
 
 	axios({
 	  method: 'get',
@@ -95,7 +95,7 @@ function saveBlockchain(response)
  */
 function saveBlockchainUser(id)
 {
-	var getUrl = window.location.origin + '/blockchain/' + id;
+	var getUrl = window.location.origin + '/api/blockchain/' + id;
 	axios({
     	method: 'post',
     	url: getUrl,
@@ -125,6 +125,8 @@ function showSuccessfulMessage()
 	      align: 'right'
 	  }
 	});
+
+	$('#progressFooter').html('<button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>');
 }
 
 function showErrorMessage()
@@ -141,4 +143,6 @@ function showErrorMessage()
 	      align: 'right'
 	  }
 	});
+
+	$('#progressFooter').html('<button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>');
 }

@@ -38,23 +38,43 @@ class ManagementController extends Controller
     }
 
     /**
-     * Verifica e exibe as informações do usuário que estão registrados na Blockchain
-     * @param  Request $request
+     * Retorna informações em json
+     *
      * @return \Illuminate\Http\Response
      */
-    public function blockchain(Request $request)
+    public function blockchain()
     {
-    	if($request->header('accept') == 'application/json')
-    		return $this->getUserInformationsToBlockchain();
+    	$user = Auth::user();
 
-    	return view('management.blockchain');
+        $baseData = [
+            '$class' => $user->getClassByRole(),
+            'tipo' => $user->getTypeByRole(),
+            'ParticipanteId' => sprintf("%06s", $user->id),
+            'carteira' => 0
+        ];
+
+        $url = config('app.api_url');
+
+        if($user->hasRole('student')){
+            $baseData += ['nome' => $user->name, 'sobrenome' => ''];
+            $url .= '/Aluno';
+        }
+
+        if($user->hasRole('canteen')){
+            $baseData += ['descricao' => 'Não há informações'];
+            $url .= '/Orgao';
+        }
+
+        $baseData += ['url' => $url];
+
+        return response()->json($baseData, 200);
     }
 
     /**
      * Retorna informações para serem registradas na blockchain
      *
-     * @param  SaveBlockchainUserRequest $request [description]
-     * @return [type]                             [description]
+     * @param  SaveBlockchainUserRequest $request
+     * @return \Illuminate\Http\Response
      */
     public function save_blockchain($participant_id)
     {
@@ -74,65 +94,5 @@ class ManagementController extends Controller
         ]);
 
         return response()->json(null, 204);;
-    }
-
-    /**
-     * Retorna um json com as informações necessárias para cadastrar um usuário na Blockchain
-     *
-     * @return json
-     */
-    protected function getUserInformationsToBlockchain()
-    {
-    	$user = Auth::user();
-
-    	$baseData = [
-    		'$class' => $user->getClassByRole(),
-    		'tipo' => $user->getTypeByRole(),
-    		'ParticipanteId' => sprintf("%06s", $user->id),
-    		'carteira' => 0
-    	];
-
-    	$url = config('app.api_url');
-
-		if($user->hasRole('student')){
-			$baseData += ['nome' => $user->name, 'sobrenome' => ''];
-			$url .= '/Aluno';
-		}
-
-		if($user->hasRole('canteen')){
-			$baseData += ['descricao' => 'Não há informações'];
-			$url .= '/Orgao';
-		}
-
-		$baseData += ['url' => $url];
-
-    	return response()->json($baseData, 200);
-    }
-
-
-    /**
-     * Realiza uma requisição para uma API
-     *
-     * @param  string $method Tipo de requisição
-     * @param  string $url    Url da requisição
-     * @param  string $data   Informações do body para a requsição
-     * @return string
-     */
-    protected function curlInit($url, $data)
-    {
-    	$curl = curl_init();
-
-    	curl_setopt_array($curl, array(
-    		CURLOPT_URL => $url,
- 			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_POST => true,
-			CURLOPT_POSTFIELDS => json_encode($data),
-			CURLOPT_HTTPHEADER => array(
-				"accept: application/json",
-				"content-type: application/json"
-	 		),
-		));
-
-    	return $curl;
     }
 }

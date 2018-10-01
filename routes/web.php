@@ -29,8 +29,6 @@ Route::middleware('auth')->group(function () {
 	Route::get('/inicio', 'ManagementController@management')->name('inicio');
 	Route::get('/perfil', 'ManagementController@profile')->name('perfil');
 	Route::get('/transacoes', 'ManagementController@transactions')->name('transacoes');
-	Route::post('/blockchain/{participant_id}', 'ManagementController@save_blockchain');
-	Route::get('/blockchain', 'ManagementController@blockchain')->name('blockchain');
 
 	Route::middleware('role:canteen')->group(function () {
 		Route::prefix('/cantina')->group(function () {
