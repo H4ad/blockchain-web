@@ -4,6 +4,11 @@ $name = trans('messages.transactions');
 
 @extends('layouts.management.master')
 
+@push('css')
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+@endpush
+
 @section('content')
 <div class="col-lg-12 col-md-6">
 
@@ -27,40 +32,37 @@ $name = trans('messages.transactions');
 		</div>
 		<div class="card-body">
 			<div class="card-body table-responsive">
-				<table id="tableListProduct" class="table table-hover">
-					<thead class="text-warning">
+				<table id="tableListProduct"
+					data-locale="{{ \App::getLocale() }}"
+					data-pagination="true"
+					data-search="true"
+					data-toggle="table"
+					data-classes="table table-no-bordered">
+					<thead>
 						<tr>
-							<th>Horário</th>
-							<th>Tipo de entidade</th>
-							<th>Participante</th>
-							<th></th>
+							<th data-field="transactionTimestamp">Horário</th>
+							<th data-field="transactionType">Tipo de entidade</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>2018-09-22, 12:54:45</td>
-							<td>AddParticipant</td>
-							<td>none</td>
-							<td>
-				                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#viewRecordModal">{{ trans('messages.view_record') }}</button>
-				            </td>
-						</tr>
-					</tbody>
 				</table>
 
+				@include('management.modals.progress')
 				@include('management.modals.view_record')
 			</div>
-			<nav>
-				<ul class="pagination justify-content-center">
-					<li class="page-item">
-						<a class="page-link" href="#" tabindex="-1">{!! trans('pagination.previous') !!}</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">{!! trans('pagination.next') !!}</a>
-					</li>
-				</ul>
-			</nav>
 		</div>
 	</div>
 </div>
 @endsection
+
+@push('scripts')
+
+{{-- Lista as informações das transações --}}
+<script src="{{ asset('js/views/management/blockchain/getTransactions.js') }}"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+
+{{-- Traduções --}}
+<script src="{{ asset('js/localization/bootstrap-table-en-US.js') }}"></script>
+<script src="{{ asset('js/localization/bootstrap-table-pt-BR.js') }}"></script>
+@endpush

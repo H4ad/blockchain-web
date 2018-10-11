@@ -95,4 +95,5 @@ return [
 	'blockchain_loading_text_02' => 'Verificando se já há uma identificação cadastrada...',
 	'blockchain_loading_text_03' => 'Esperando resposta da Blockchain...',
 	'blockchain_loading_text_04' => 'Finalizando, estamos armazenando sua identificação...',
+	'progress_title' => 'Carregando...'
 ];

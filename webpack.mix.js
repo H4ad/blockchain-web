@@ -38,4 +38,12 @@ mix.js('resources/assets/js/views/management/home/loadStockInformationChart.js',
  */
 
 mix.js('resources/assets/js/views/management/blockchain/getAlunoInfo.js', 'public/js/views/management/blockchain/');
+mix.js('resources/assets/js/views/management/blockchain/getTransactions.js', 'public/js/views/management/blockchain/');
 mix.sass('resources/assets/sass/progressbar.scss', 'public/css');
+
+/*
+ * Traduções
+ */
+
+mix.js('resources/assets/js/localization/bootstrap-table-en-US.js', 'public/js/localization/');
+mix.js('resources/assets/js/localization/bootstrap-table-pt-BR.js', 'public/js/localization/');
