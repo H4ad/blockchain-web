@@ -12,8 +12,3 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth')->group(function () {
-	Route::get('/blockchain', 'ManagementController@blockchain')->name('blockchain');
-	Route::post('/blockchain/{participant_id}', 'ManagementController@save_blockchain');
-});

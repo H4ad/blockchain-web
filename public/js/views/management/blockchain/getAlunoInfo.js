@@ -103,10 +103,7 @@ $(document).ready(function () {
 			$('#progressIdentifierText').text('Finalizando, estamos armazenando sua identificação...');
 			saveBlockchainUser(response.data.ParticipanteId);
 		}).catch(function (error) {
-			console.log(error);
-
 			getBlockchainUser();
-			return Promise.reject(error);
 		});
 	});
 });
@@ -115,7 +112,7 @@ $(document).ready(function () {
  * Caso não haja um usuário com o mesmo id, ele pede para o Laravel retornar um válido e então tenta registrar na Blockchain
  */
 function getBlockchainUser() {
-	var getUrl = window.location.origin + '/api/blockchain';
+	var getUrl = window.location.origin + '/blockchain';
 
 	axios({
 		method: 'get',
@@ -128,7 +125,6 @@ function getBlockchainUser() {
 		saveBlockchain(response);
 	}).catch(function (error) {
 		showErrorMessage();
-		return Promise.reject(error);
 	});
 }
 
@@ -157,7 +153,6 @@ function saveBlockchain(response) {
 		saveBlockchainUser(dataBlock.data.ParticipanteId);
 	}).catch(function (error) {
 		showErrorMessage();
-		return Promise.reject(error);
 	});
 }
 
@@ -165,7 +160,7 @@ function saveBlockchain(response) {
  * Salva as informações do usuário da Blockchain pelo id dele no Laravel
  */
 function saveBlockchainUser(id) {
-	var getUrl = window.location.origin + '/api/blockchain/' + id;
+	var getUrl = window.location.origin + '/blockchain/' + id;
 	axios({
 		method: 'post',
 		url: getUrl,
@@ -178,7 +173,6 @@ function saveBlockchainUser(id) {
 		showSuccessfulMessage();
 	}).catch(function (error) {
 		showErrorMessage();
-		return Promise.reject(error);
 	});
 }
 
@@ -195,6 +189,7 @@ function showSuccessfulMessage() {
 		}
 	});
 
+	$('#progressIdentifierText').text('Finalizado, agora você pode realizar as ações normalmente!');
 	$('#progressFooter').html('<button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>');
 }
 
@@ -212,6 +207,7 @@ function showErrorMessage() {
 		}
 	});
 
+	$('#progressIdentifierText').text('Um erro ocorreu, tente novamente!');
 	$('#progressFooter').html('<button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>');
 }
 

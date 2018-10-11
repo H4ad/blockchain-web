@@ -28,10 +28,7 @@ $(document).ready(function() {
 		    saveBlockchainUser(response.data.ParticipanteId);
 		})
 		.catch(error => {
-			console.log(error);
-
 			getBlockchainUser();
-      		return Promise.reject(error);
 		});
 	});
 });
@@ -41,7 +38,7 @@ $(document).ready(function() {
  */
 function getBlockchainUser()
 {
-	var getUrl = window.location.origin + '/api/blockchain';
+	var getUrl = window.location.origin + '/blockchain';
 
 	axios({
 	  method: 'get',
@@ -56,7 +53,6 @@ function getBlockchainUser()
 	})
 	.catch(error => {
 		showErrorMessage();
-      	return Promise.reject(error);
 	});
 }
 
@@ -86,7 +82,6 @@ function saveBlockchain(response)
     	saveBlockchainUser(dataBlock.data.ParticipanteId);
     }).catch(error => {
     	showErrorMessage();
-      	return Promise.reject(error);
     });
 }
 
@@ -95,7 +90,7 @@ function saveBlockchain(response)
  */
 function saveBlockchainUser(id)
 {
-	var getUrl = window.location.origin + '/api/blockchain/' + id;
+	var getUrl = window.location.origin + '/blockchain/' + id;
 	axios({
     	method: 'post',
     	url: getUrl,
@@ -108,7 +103,6 @@ function saveBlockchainUser(id)
     	showSuccessfulMessage();
     }).catch(error => {
     	showErrorMessage();
-      	return Promise.reject(error);
     });
 }
 
@@ -126,6 +120,7 @@ function showSuccessfulMessage()
 	  }
 	});
 
+	$('#progressIdentifierText').text('Finalizado, agora você pode realizar as ações normalmente!');
 	$('#progressFooter').html('<button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>');
 }
 
@@ -144,5 +139,6 @@ function showErrorMessage()
 	  }
 	});
 
+	$('#progressIdentifierText').text('Um erro ocorreu, tente novamente!');
 	$('#progressFooter').html('<button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>');
 }
