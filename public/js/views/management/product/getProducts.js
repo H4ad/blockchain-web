@@ -60,62 +60,41 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 65);
+/******/ 	return __webpack_require__(__webpack_require__.s = 59);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 65:
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(66);
+module.exports = __webpack_require__(60);
 
 
 /***/ }),
 
-/***/ 66:
+/***/ 60:
 /***/ (function(module, exports) {
 
 /**
- * Bootstrap Table Brazilian Portuguese Translation
- * Author: Eduardo Cerqueira<egcerqueira@gmail.com>
- * Update: João Mello<jmello@hotmail.com.br>
+ * Script que lista os produtos
  */
-(function ($) {
-    'use strict';
 
-    $.fn.bootstrapTable.locales['pt-BR'] = {
-        formatLoadingMessage: function formatLoadingMessage() {
-            return 'Carregando, aguarde...';
-        },
-        formatRecordsPerPage: function formatRecordsPerPage(pageNumber) {
-            return pageNumber + ' registros por página';
-        },
-        formatShowingRows: function formatShowingRows(pageFrom, pageTo, totalRows) {
-            return 'Exibindo ' + pageFrom + ' até ' + pageTo + ' de ' + totalRows + ' linhas';
-        },
-        formatSearch: function formatSearch() {
-            return 'Pesquisar';
-        },
-        formatRefresh: function formatRefresh() {
-            return 'Recarregar';
-        },
-        formatToggle: function formatToggle() {
-            return 'Alternar';
-        },
-        formatColumns: function formatColumns() {
-            return 'Colunas';
-        },
-        formatPaginationSwitch: function formatPaginationSwitch() {
-            return 'Ocultar/Exibir paginação';
-        },
-        formatNoMatches: function formatNoMatches() {
-            return 'Nenhum registro encontrado';
-        }
-    };
-
-    $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['pt-BR']);
-})(jQuery);
+product = {
+	getProducts: function getProducts() {
+		axios({
+			method: 'get',
+			url: 'http://localhost:3000/api/Produto',
+			headers: {
+				'Accept': 'application/json'
+			}
+		}).then(function (response) {
+			return response.data;
+		}).catch(function (error) {
+			$.notify({ icon: "add_alert", message: "Ocorreu um erro, não foi possível obter os produtos!" }, { type: 'danger', timer: 3000, placement: { from: 'top', align: 'right' } });
+		});
+	}
+};
 
 /***/ })
 

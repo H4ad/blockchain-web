@@ -5,14 +5,14 @@ $name = trans('messages.canteen');
 @extends('layouts.management.master')
 
 @section('content')
-<div class="col-lg-12 col-md-6">
+<div class="col-lg-12">
 	<div class="card">
 		<div class="card-header card-header-info">
 			<h4 class="card-title">{{ trans('messages.exchange_product') }}</h4>
 			<p class="card-category">{{ trans('messages.exchange_product_text_01') }}</p>
 		</div>
 		<div class="card-body">
-			<form method="POST" action="{{ route('trocar') }}">
+			<form id="exchangeForm">
 				<div class="input-group col-md-6 mt-3">
 					<div class="input-group-prepend">
 				    	<span class="input-group-text">
@@ -21,7 +21,7 @@ $name = trans('messages.canteen');
 				    </div>
 	                <div class="form-group bmd-form-group">
 	                 	<label class="bmd-label-floating">{{ trans('messages.identity_of_student') }}</label>
-	                 	<input name="student" type="text" class="form-control"/>
+	                 	<input name="student" type="text" class="form-control mr-5"/>
 	                </div>
 	            </div>
 	            <div class="input-group col-md-6 mt-3">
@@ -43,15 +43,21 @@ $name = trans('messages.canteen');
 				    </div>
 	                <div class="form-group bmd-form-group">
 	                 	<label class="bmd-label-floating">{{ trans('messages.product_gived') }}</label>
-	                 	<div class="select">
-						    <select id="inputProductsOnExchangeProduct" name="product_gived"></select>
-						</div>
+	                 	<input name="product_gived" type="text" class="form-control mr-5"/>
 	                </div>
 	            </div>
+	            <input name="seller" type="hidden" value="{{ sprintf("%06s", \Auth::user()->id) }}"/>
 				<div class="float-sm-right">
-					<button type="submit" class="btn btn-info">{{ trans('messages.exchange') }}</button>
+					<button id="submitExchange" type="button" class="btn btn-info">{{ trans('messages.exchange') }}</button>
 				</div>
 			</form>
+
+			@include('management.modals.progress')
 		</div>
 	</div>
 @endsection
+
+@push('scripts')
+{{-- Executa a transação--}}
+<script src="{{ asset('js/views/management/product/exchange.js') }}" type="text/javascript"></script>
+@endpush

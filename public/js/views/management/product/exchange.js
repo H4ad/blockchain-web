@@ -60,62 +60,66 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 65);
+/******/ 	return __webpack_require__(__webpack_require__.s = 61);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 65:
+/***/ 61:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(66);
+module.exports = __webpack_require__(62);
 
 
 /***/ }),
 
-/***/ 66:
+/***/ 62:
 /***/ (function(module, exports) {
 
 /**
- * Bootstrap Table Brazilian Portuguese Translation
- * Author: Eduardo Cerqueira<egcerqueira@gmail.com>
- * Update: João Mello<jmello@hotmail.com.br>
+ * Script para realizar troca
  */
-(function ($) {
-    'use strict';
 
-    $.fn.bootstrapTable.locales['pt-BR'] = {
-        formatLoadingMessage: function formatLoadingMessage() {
-            return 'Carregando, aguarde...';
-        },
-        formatRecordsPerPage: function formatRecordsPerPage(pageNumber) {
-            return pageNumber + ' registros por página';
-        },
-        formatShowingRows: function formatShowingRows(pageFrom, pageTo, totalRows) {
-            return 'Exibindo ' + pageFrom + ' até ' + pageTo + ' de ' + totalRows + ' linhas';
-        },
-        formatSearch: function formatSearch() {
-            return 'Pesquisar';
-        },
-        formatRefresh: function formatRefresh() {
-            return 'Recarregar';
-        },
-        formatToggle: function formatToggle() {
-            return 'Alternar';
-        },
-        formatColumns: function formatColumns() {
-            return 'Colunas';
-        },
-        formatPaginationSwitch: function formatPaginationSwitch() {
-            return 'Ocultar/Exibir paginação';
-        },
-        formatNoMatches: function formatNoMatches() {
-            return 'Nenhum registro encontrado';
-        }
-    };
+$(document).ready(function () {
+	$('#submitExchange').click(function () {
+		sendExchangeTransaction();
+	});
+});
 
-    $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['pt-BR']);
-})(jQuery);
+function sendExchangeTransaction() {
+	$('#progressModal').modal('show');
+
+	var buyer = $('#exchangeForm').find('input[name="student"]').val();
+	var seller = $('#exchangeForm').find('input[name="seller"]').val();
+	var product_received = $('#exchangeForm').find('input[name="product_received"]').val();
+	var product_gived = $('#exchangeForm').find('input[name="product_gived"]').val();
+
+	var data = {
+		comprador: 'resource:org.transacoes.cantina.Aluno#' + buyer,
+		vendedor: 'resource:org.transacoes.cantina.Orgao#' + seller,
+		produtoRecebido: 'resource:org.transacoes.cantina.Produto#' + product_received,
+		produtoEntregue: 'resource:org.transacoes.cantina.Produto#' + product_gived
+	};
+
+	var baseUrlApi = document.head.querySelector('meta[name="api_blockchain"]').getAttribute('content');;
+	axios({
+		method: 'post',
+		url: baseUrlApi + '/Troca',
+		headers: {
+			'Content-type': 'application/json',
+			'Accept': 'application/json'
+		},
+		data: JSON.stringify(data)
+	}).then(function (success) {
+		$.notify({ icon: "add_alert", message: "Troca realizada com sucesso!" }, { type: 'success', timer: 3000, placement: { from: 'top', align: 'right' } });
+	}).catch(function (error) {
+		$.notify({ icon: "add_alert", message: "Ocorreu um erro, não foi possível realizar a troca!" }, { type: 'danger', timer: 3000, placement: { from: 'top', align: 'right' } });
+	});
+
+	setTimeout(function () {
+		$('#progressModal').modal('hide');
+	}, 1000);
+}
 
 /***/ })
 

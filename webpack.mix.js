@@ -41,6 +41,12 @@ mix.js('resources/assets/js/views/management/blockchain/getAlunoInfo.js', 'publi
 mix.js('resources/assets/js/views/management/blockchain/getTransactions.js', 'public/js/views/management/blockchain/');
 mix.sass('resources/assets/sass/progressbar.scss', 'public/css');
 
+/**
+ * Produtos
+ */
+mix.js('resources/assets/js/views/management/product/getProducts.js', 'public/js/views/management/product/');
+mix.js('resources/assets/js/views/management/product/exchange.js', 'public/js/views/management/product/');
+
 /*
  * Traduções
  */
