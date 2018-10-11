@@ -60,62 +60,79 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 67);
+/******/ 	return __webpack_require__(__webpack_require__.s = 63);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 67:
+/***/ 63:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(68);
+module.exports = __webpack_require__(64);
 
 
 /***/ }),
 
-/***/ 68:
+/***/ 64:
 /***/ (function(module, exports) {
 
 /**
- * Bootstrap Table Brazilian Portuguese Translation
- * Author: Eduardo Cerqueira<egcerqueira@gmail.com>
- * Update: João Mello<jmello@hotmail.com.br>
+ * Script para realizar a adição de um produto
  */
-(function ($) {
-    'use strict';
 
-    $.fn.bootstrapTable.locales['pt-BR'] = {
-        formatLoadingMessage: function formatLoadingMessage() {
-            return 'Carregando, aguarde...';
-        },
-        formatRecordsPerPage: function formatRecordsPerPage(pageNumber) {
-            return pageNumber + ' registros por página';
-        },
-        formatShowingRows: function formatShowingRows(pageFrom, pageTo, totalRows) {
-            return 'Exibindo ' + pageFrom + ' até ' + pageTo + ' de ' + totalRows + ' linhas';
-        },
-        formatSearch: function formatSearch() {
-            return 'Pesquisar';
-        },
-        formatRefresh: function formatRefresh() {
-            return 'Recarregar';
-        },
-        formatToggle: function formatToggle() {
-            return 'Alternar';
-        },
-        formatColumns: function formatColumns() {
-            return 'Colunas';
-        },
-        formatPaginationSwitch: function formatPaginationSwitch() {
-            return 'Ocultar/Exibir paginação';
-        },
-        formatNoMatches: function formatNoMatches() {
-            return 'Nenhum registro encontrado';
-        }
-    };
+$(document).ready(function () {
+	$('#submitAddProduct').click(function () {
+		add();
+	});
+});
 
-    $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['pt-BR']);
-})(jQuery);
+function add() {
+	$('#progressModal').modal('show');
+
+	var type = $('#addProductForm').find('input[name="type"]').val();
+	var description = $('#addProductForm').find('input[name="description"]').val();
+	var value = $('#addProductForm').find('input[name="value"]').val();
+	var status = $('#selectStatus option:selected').text();
+	var owner = $('#addProductForm').find('input[name="owner"]').val();
+	var productId = UUID.generate();
+
+	var data = {
+		$class: 'org.transacoes.cantina.Produto',
+		ProdutoId: productId,
+		tipo: type,
+		descricao: description,
+		valor: value,
+		status: status,
+		proprietario: owner
+	};
+
+	var baseUrlApi = document.head.querySelector('meta[name="api_blockchain"]').getAttribute('content');;
+	axios({
+		method: 'post',
+		url: baseUrlApi + '/Produto',
+		headers: {
+			'Content-type': 'application/json',
+			'Accept': 'application/json'
+		},
+		data: JSON.stringify(data)
+	}).then(function (success) {
+		closeModal();
+
+		$.notify({ icon: "add_alert", message: "Produto adicionado com sucesso!" }, { type: 'success', timer: 3000, placement: { from: 'top', align: 'right' } });
+
+		$(':input', '#addProductForm').not(':button, :submit, :reset, :hidden').val('').prop('checked', false).prop('selected', false);
+	}).catch(function (error) {
+		closeModal();
+
+		$.notify({ icon: "add_alert", message: "Ocorreu um erro, não foi possível adicionar o produto!" }, { type: 'danger', timer: 3000, placement: { from: 'top', align: 'right' } });
+	});
+}
+
+function closeModal() {
+	setTimeout(function () {
+		$('#progressModal').modal('hide');
+	}, 500);
+}
 
 /***/ })
 

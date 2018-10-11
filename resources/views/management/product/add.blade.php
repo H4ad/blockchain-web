@@ -12,7 +12,7 @@ $name = trans('messages.canteen');
 			<p class="card-category">{{ trans('messages.add_product_text_01') }}</p>
 		</div>
 		<div class="card-body">
-			<form method="POST" action="{{ route('produtos.adicionar') }}">
+			<form id="addProductForm">
 				<div class="input-group col-md-6 mt-3">
 					<div class="input-group-prepend">
 				    	<span class="input-group-text">
@@ -43,7 +43,7 @@ $name = trans('messages.canteen');
 				    </div>
 	                <div class="form-group bmd-form-group">
 	                 	<label class="bmd-label-floating">{{ trans('messages.value') }}</label>
-                     	<input name="value" class="form-control" type="number" min="0">
+                     	<input name="value" class="form-control" type="text">
 	                </div>
 	            </div>
 	            <div class="input-group col-md-6 mt-3">
@@ -55,17 +55,30 @@ $name = trans('messages.canteen');
 				    <div class="form-group bmd-form-group">
                      	<label class="bmd-label-floating">{{ trans('messages.status') }}</label>
                      	<div class="select">
-						    <select name="status">
-						    	<option value="Bom" selected>Bom</option>
+						    <select id="selectStatus">
+						    	<option value="Bom" selected="selected">Bom</option>
 						    	<option value="Ruim">Ruim</option>
 						    </select>
 						</div>
                     </div>
 				</div>
+	            <input name="owner" type="hidden" value="{{ sprintf("%06s", \Auth::user()->id) }}"/>
 				<div class="float-sm-right">
-					<button type="submit" class="btn btn-info">{{ trans('messages.add') }}</button>
+					<button id="submitAddProduct" type="button" class="btn btn-info">{{ trans('messages.add') }}</button>
 				</div>
 			</form>
+
+			@include('management.modals.progress')
 		</div>
 	</div>
 @endsection
+
+@push('scripts')
+
+{{-- Script para adicionar um produto --}}
+<script src="{{ asset('js/UUID.js') }}" type="text/javascript"></script>
+
+{{-- Script para adicionar um produto --}}
+<script src="{{ asset('js/views/management/product/add.js') }}"></script>
+
+@endpush

@@ -10,6 +10,7 @@
     "/js/jquery.magnific-popup.js": "/js/jquery.magnific-popup.js",
     "/js/views/management/product/getProducts.js": "/js/views/management/product/getProducts.js",
     "/js/views/management/product/exchange.js": "/js/views/management/product/exchange.js",
+    "/js/views/management/product/add.js": "/js/views/management/product/add.js",
     "/js/views/management/home/loadUserSubscriptionsChart.js": "/js/views/management/home/loadUserSubscriptionsChart.js",
     "/js/views/management/home/loadStockInformationChart.js": "/js/views/management/home/loadStockInformationChart.js",
     "/js/views/management/home/loadDailyCharts.js": "/js/views/management/home/loadDailyCharts.js",
