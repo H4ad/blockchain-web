@@ -7,6 +7,6 @@ Para ver como está este projeto, veja ele online [aqui](http://intense-shelf-94
 
 # Imagens do site
 
-![alt text](https://raw.githubusercontent.com/H4ad/blockchain-web/github_images/1.png)
+![Página de bem-vindo](https://github.com/H4ad/blockchain-web/blob/dev/github_images/2.png)
 
-![alt text](https://raw.githubusercontent.com/H4ad/blockchain-web/github_images/2.png)
+![Página de transações](https://github.com/H4ad/blockchain-web/blob/dev/github_images/1.png)
