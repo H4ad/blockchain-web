@@ -26,7 +26,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/blockchain';
+    protected $redirectTo = '/inicio';
 
     /**
      * Create a new controller instance.
