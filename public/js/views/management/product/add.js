@@ -109,7 +109,7 @@ function add() {
 		proprietario: owner
 	};
 
-	var baseUrlApi = document.head.querySelector('meta[name="api_blockchain"]').getAttribute('content');;
+	var baseUrlApi = document.head.querySelector('meta[name="api_blockchain"]').getAttribute('content');
 	axios({
 		method: 'post',
 		url: baseUrlApi + '/Produto',

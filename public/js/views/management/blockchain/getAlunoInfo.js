@@ -190,7 +190,9 @@ function showSuccessfulMessage() {
 	});
 
 	$('#progressIdentifierText').text('Finalizado, agora você pode realizar as ações normalmente!');
-	$('#progressFooter').html('<button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>');
+	setTImeout(function () {
+		$('#exampleModalLong').modal('hide');
+	}, 500);
 }
 
 function showErrorMessage() {
@@ -208,7 +210,9 @@ function showErrorMessage() {
 	});
 
 	$('#progressIdentifierText').text('Um erro ocorreu, tente novamente!');
-	$('#progressFooter').html('<button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>');
+	setTImeout(function () {
+		$('#exampleModalLong').modal('hide');
+	}, 500);
 }
 
 /***/ })

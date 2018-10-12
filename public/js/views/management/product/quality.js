@@ -60,52 +60,65 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 65);
+/******/ 	return __webpack_require__(__webpack_require__.s = 67);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 65:
+/***/ 67:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(66);
+module.exports = __webpack_require__(68);
 
 
 /***/ }),
 
-/***/ 66:
+/***/ 68:
 /***/ (function(module, exports) {
 
 /**
- * Script para realizar o estorno de algum produto
+ * Script para realizar a transação de qualidade
  */
 
 $(document).ready(function () {
-	$('#submitToReverse').click(function () {
-		toReverse();
+	$('#submitQuality').click(function () {
+		sendQualityTransaction();
 	});
 });
 
 /**
- * Estorna um produto
+ * Realiza a transação de qualidade
  */
-function toReverse() {
+function sendQualityTransaction() {
 	$('#progressModal').modal({ backdrop: 'static', keyboard: true, show: true });
 
-	var student = $('#toReverseForm').find('input[name="student"]').val();
-	var reversed_product = $('#toReverseForm').find('input[name="reversed_product"]').val();
-	var seller = $('#toReverseForm').find('input[name="seller"]').val();
+	var student = $('#qualityForm').find('input[name="student"]').val();
+	var seller = $('#qualityForm').find('input[name="seller"]').val();
+	var product_expired = $('#qualityForm').find('input[name="product_expired"]').val();
+	var stock_expired = $('#qualityForm').find('input[name="stock_expired"]').val();
+	var product = $('#qualityForm').find('input[name="product"]').val();
 
 	var data = {
-		$class: 'org.transacoes.cantina.Estorno',
 		comprador: 'resource:org.transacoes.cantina.Aluno#' + student,
 		vendedor: 'resource:org.transacoes.cantina.Orgao#' + seller,
-		produtoEstornado: 'resource:org.transacoes.cantina.Produto#' + reversed_product
+		produtoVencido: 'resource:org.transacoes.cantina.Produto#' + product_expired,
+		estoqueVencido: 'resource:org.transacoes.cantina.Estoque#' + stock_expired
 	};
+
 	var baseUrlApi = document.head.querySelector('meta[name="api_blockchain"]').getAttribute('content');
+
+	if (isEmptyOrSpaces(product)) {
+		data['$class'] = 'org.transacoes.cantina.QualidadeSemVenda';
+		baseUrlApi += '/QualidadeSemVenda';
+	} else {
+		data['$class'] = 'org.transacoes.cantina.QualidadeComVenda';
+		data['produto'] = 'resource:org.transacoes.cantina.Produto#' + product;
+		baseUrlApi += '/QualidadeComVenda';
+	}
+
 	axios({
 		method: 'post',
-		url: baseUrlApi + '/Estorno',
+		url: baseUrlApi,
 		headers: {
 			'Content-type': 'application/json',
 			'Accept': 'application/json'
@@ -114,13 +127,13 @@ function toReverse() {
 	}).then(function (success) {
 		closeModal();
 
-		$.notify({ icon: "add_alert", message: "Produto estornado com sucesso!" }, { type: 'success', timer: 3000, placement: { from: 'top', align: 'right' } });
+		$.notify({ icon: "add_alert", message: "Qualidade realizada com sucesso!" }, { type: 'success', timer: 3000, placement: { from: 'top', align: 'right' } });
 
-		$(':input', '#toReverseForm').not(':button, :submit, :reset, :hidden').val('').prop('checked', false).prop('selected', false);
+		$(':input', '#qualityForm').not(':button, :submit, :reset, :hidden').val('').prop('checked', false).prop('selected', false);
 	}).catch(function (error) {
 		closeModal();
 
-		$.notify({ icon: "add_alert", message: "Ocorreu um erro, não foi possível estornar o produto!" }, { type: 'danger', timer: 3000, placement: { from: 'top', align: 'right' } });
+		$.notify({ icon: "add_alert", message: "Ocorreu um erro, não foi possível realizar a qualidade!" }, { type: 'danger', timer: 3000, placement: { from: 'top', align: 'right' } });
 	});
 }
 
@@ -131,6 +144,13 @@ function closeModal() {
 	setTimeout(function () {
 		$('#progressModal').modal('hide');
 	}, 500);
+}
+
+/**
+ * Verifica se existe espaços em branco
+ */
+function isEmptyOrSpaces(str) {
+	return str === null || str.match(/^ *$/) !== null;
 }
 
 /***/ })

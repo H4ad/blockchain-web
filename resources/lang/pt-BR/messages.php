@@ -59,6 +59,7 @@ return [
 	'to_reverse_product_text_01' => 'Aqui, você pode realizar o estorno de algum produto.',
 	'identity_of_reversed_product' => 'Identificação do Produto Estornado',
 	'quality_product_text_01' => 'Aqui, você pode realizar a qualidade de algum produto.',
+	'quality_product_text_02' => '<b>Campo opcional</b>, caso queira retornar um produto na qualidade',
 	'identity_of_quality_expired' => 'Identificação do Produto Vencido',
 	'identity_of_stock_expired' => 'Identificação do Estoque Vencido',
 	'add_product' => 'Adicionar Produto',
@@ -95,5 +96,6 @@ return [
 	'blockchain_loading_text_02' => 'Verificando se já há uma identificação cadastrada...',
 	'blockchain_loading_text_03' => 'Esperando resposta da Blockchain...',
 	'blockchain_loading_text_04' => 'Finalizando, estamos armazenando sua identificação...',
-	'progress_title' => 'Carregando...'
+	'progress_title' => 'Carregando...',
+	'identity_of_product_to_post' => 'Identificação do produto a ser entregue',
 ];
