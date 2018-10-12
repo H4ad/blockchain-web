@@ -60,20 +60,20 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 61);
+/******/ 	return __webpack_require__(__webpack_require__.s = 59);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 61:
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(62);
+module.exports = __webpack_require__(60);
 
 
 /***/ }),
 
-/***/ 62:
+/***/ 60:
 /***/ (function(module, exports) {
 
 /**
@@ -101,7 +101,7 @@ function sendExchangeTransaction() {
 		produtoEntregue: 'resource:org.transacoes.cantina.Produto#' + product_gived
 	};
 
-	var baseUrlApi = document.head.querySelector('meta[name="api_blockchain"]').getAttribute('content');;
+	var baseUrlApi = document.head.querySelector('meta[name="api_blockchain"]').getAttribute('content');
 	axios({
 		method: 'post',
 		url: baseUrlApi + '/Troca',

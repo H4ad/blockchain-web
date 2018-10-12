@@ -68,7 +68,7 @@ return [
 	'value' => 'Valor',
 	'status' => 'Status',
 	'list_product' => 'Todos os produtos',
-	'list_product_text_01' => 'Aqui, você pode ver todos os produtos cadastrados no sistema.',
+	'list_product_text_01' => 'Aqui, você pode ver todos os seus produtos cadastrados no sistema.',
 	'list_transactions' => 'Todos as transações',
 	'list_transactions_text_01' => 'Aqui, você pode ver todos as transações realizadas.',
 	'view_record' => 'Visualizar registro',

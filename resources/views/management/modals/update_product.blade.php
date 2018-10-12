@@ -8,7 +8,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="{{ route('produtos.atualizar') }}">
+				<form id="updateProductForm">
 					<div class="input-group mt-3">
 						<div class="input-group-prepend">
 					    	<span class="input-group-text">
@@ -39,7 +39,7 @@
 					    </div>
 		                <div class="form-group bmd-form-group">
 		                 	<label class="bmd-label-floating">{{ trans('messages.value') }}</label>
-	                     	<input name="value" class="form-control" type="number" min="0">
+	                     	<input name="value" class="form-control" type="text">
 		                </div>
 		            </div>
 		            <div class="input-group mt-3">
@@ -60,9 +60,11 @@
 					</div>
 				</form>
 			</div>
+			<input type="hidden" id="productId">
+			<input type="hidden" id="productOwner">
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">{{ trans('messages.cancel') }}</button>
-				<button type="button" class="btn btn-info">{{ trans('messages.update') }}</button>
+				<button id="btnUpdateProduct" type="button" class="btn btn-info">{{ trans('messages.update') }}</button>
 			</div>
 		</div>
 	</div>

@@ -68,33 +68,8 @@
 /***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(60);
+(function webpackMissingModule() { throw new Error("Cannot find module \"/var/www/blockchain-web/resources/assets/js/views/management/product/getProducts.js\""); }());
 
-
-/***/ }),
-
-/***/ 60:
-/***/ (function(module, exports) {
-
-/**
- * Script que lista os produtos
- */
-
-product = {
-	getProducts: function getProducts() {
-		axios({
-			method: 'get',
-			url: 'http://localhost:3000/api/Produto',
-			headers: {
-				'Accept': 'application/json'
-			}
-		}).then(function (response) {
-			return response.data;
-		}).catch(function (error) {
-			$.notify({ icon: "add_alert", message: "Ocorreu um erro, não foi possível obter os produtos!" }, { type: 'danger', timer: 3000, placement: { from: 'top', align: 'right' } });
-		});
-	}
-};
 
 /***/ })
 

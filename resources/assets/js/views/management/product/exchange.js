@@ -24,7 +24,7 @@ function sendExchangeTransaction()
 	    produtoEntregue: 'resource:org.transacoes.cantina.Produto#' + product_gived,
 	};
 
-	let baseUrlApi = document.head.querySelector('meta[name="api_blockchain"]').getAttribute('content');;
+	let baseUrlApi = document.head.querySelector('meta[name="api_blockchain"]').getAttribute('content');
 	axios({
     	method: 'post',
     	url: baseUrlApi + '/Troca',

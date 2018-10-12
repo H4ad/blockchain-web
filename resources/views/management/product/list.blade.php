@@ -4,6 +4,13 @@ $name = trans('messages.canteen');
 
 @extends('layouts.management.master')
 
+@push('css')
+{{-- Identificação do usuário --}}
+<meta name="participant_id" content="{{ sprintf("%06s", \Auth::user()->id) }}">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+@endpush
+
 @section('content')
 <div class="col-lg-12 col-md-6">
 	<div class="card">
@@ -13,46 +20,22 @@ $name = trans('messages.canteen');
 		</div>
 		<div class="card-body">
 			<div class="card-body table-responsive">
-				<table id="tableListProduct" class="table table-hover">
-					<thead class="text-warning">
-						<tr>
-							<th>ID</th>
-							<th>Tipo</th>
-							<th>Preço</th>
-							<th>Status</th>
-							<th>Descrição</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Dakota Rice</td>
-							<td>$36,738</td>
-							<td>Niger</td>
-							<td>Niger</td>
-							<td class="td-actions text-right">
-                              <button type="button" rel="tooltip" class="btn btn-white btn-link btn-sm" data-original-title="Editar produto" data-toggle="modal" data-target="#updateProductModal">
-                                <i class="material-icons">edit</i>
-                              </button>
-                              <button type="button" rel="tooltip" class="btn btn-white btn-link btn-sm" data-original-title="Deletar produto" data-toggle="modal" data-target="#deleteProductModal">
-                                <i class="material-icons">close</i>
-                              </button>
-                            </td>
-						</tr>
-					</tbody>
+				<table id="table"
+					data-locale="{{ \App::getLocale() }}"
+					data-toolbar="#toolbar"
+					data-search="true"
+					data-show-columns="true"
+					data-show-export="true"
+					data-minimum-count-columns="2"
+					data-pagination="true"
+					data-id-field="ProdutoId"
+					data-page-list="[10, 25, 50, 100, ALL]"
+					data-classes="table table-no-bordered"
+       				data-response-handler="responseHandler">
 				</table>
+
+				@include('management.modals.progress')
 			</div>
-			<nav>
-				<ul class="pagination justify-content-center">
-					<li class="page-item">
-						<a class="page-link" href="#" tabindex="-1">{!! trans('pagination.previous') !!}</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">{!! trans('pagination.next') !!}</a>
-					</li>
-				</ul>
-			</nav>
 		</div>
 	</div>
 
@@ -60,3 +43,18 @@ $name = trans('messages.canteen');
 	@include('management.modals.update_product')
 </div>
 @endsection
+
+@push('scripts')
+
+{{-- Lista as informações das transações --}}
+<script src="{{ asset('js/views/management/product/list.js') }}"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+
+{{-- Traduções --}}
+<script src="{{ asset('js/localization/bootstrap-table-en-US.js') }}"></script>
+<script src="{{ asset('js/localization/bootstrap-table-pt-BR.js') }}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/export/bootstrap-table-export.min.js"></script>
+<script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+@endpush
