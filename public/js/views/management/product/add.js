@@ -86,8 +86,11 @@ $(document).ready(function () {
 	});
 });
 
+/**
+ * Adiciona um produto
+ */
 function add() {
-	$('#progressModal').modal('show');
+	$('#progressModal').modal({ backdrop: 'static', keyboard: true, show: true });
 
 	var type = $('#addProductForm').find('input[name="type"]').val();
 	var description = $('#addProductForm').find('input[name="description"]').val();

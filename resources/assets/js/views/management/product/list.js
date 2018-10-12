@@ -3,7 +3,7 @@
  */
 
  $(document).ready(function(){
- 	$('#progressModal').modal('show');
+ 	$('#progressModal').modal({ backdrop: 'static', keyboard: true, show: true});
 
  	initTable();
  	loadProducts();

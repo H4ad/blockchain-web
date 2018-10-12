@@ -8,9 +8,12 @@ $(document).ready(function(){
 	});
 });
 
+/**
+ * Executa transação de troca
+ */
 function sendExchangeTransaction()
 {
-	$('#progressModal').modal('show');
+	$('#progressModal').modal({ backdrop: 'static', keyboard: true, show: true});
 
 	let buyer = $('#exchangeForm').find('input[name="student"]').val();
 	let seller = $('#exchangeForm').find('input[name="seller"]').val();
@@ -34,17 +37,27 @@ function sendExchangeTransaction()
     	},
     	data: JSON.stringify(data)
     }).then(success => {
+		closeModal();
+
     	$.notify(
 			{ icon: "add_alert", message: "Troca realizada com sucesso!" },
 			{ type: 'success', timer: 3000, placement: { from: 'top', align: 'right' } }
 		);
     }).catch(error => {
+		closeModal();
+
     	$.notify(
 			{ icon: "add_alert", message: "Ocorreu um erro, não foi possível realizar a troca!" },
 			{ type: 'danger', timer: 3000, placement: { from: 'top', align: 'right' } }
 		);
     });
+}
 
+/**
+ * Fecha a modal
+ */
+function closeModal()
+{
      setTimeout(function() {
 		$('#progressModal').modal('hide');
     }, 1000);
