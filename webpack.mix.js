@@ -49,6 +49,7 @@ mix.js('resources/assets/js/views/management/product/add.js', 'public/js/views/m
 mix.js('resources/assets/js/views/management/product/list.js', 'public/js/views/management/product/');
 mix.js('resources/assets/js/views/management/product/to_reverse.js', 'public/js/views/management/product/');
 mix.js('resources/assets/js/views/management/product/quality.js', 'public/js/views/management/product/');
+mix.js('resources/assets/js/views/management/product/buy.js', 'public/js/views/management/product/');
 
 /*
  * Traduções
