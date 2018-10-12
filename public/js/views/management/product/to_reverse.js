@@ -60,70 +60,78 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 67);
+/******/ 	return __webpack_require__(__webpack_require__.s = 65);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 67:
+/***/ 65:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(68);
+module.exports = __webpack_require__(66);
 
 
 /***/ }),
 
-/***/ 68:
+/***/ 66:
 /***/ (function(module, exports) {
 
 /**
- * Bootstrap Table English translation
- * Author: Zhixin Wen<wenzhixin2010@gmail.com>
+ * Script para realizar o estorno de algum produto
  */
-(function ($) {
-    'use strict';
 
-    $.fn.bootstrapTable.locales['en-US'] = {
-        formatLoadingMessage: function formatLoadingMessage() {
-            return 'Loading, please wait...';
-        },
-        formatRecordsPerPage: function formatRecordsPerPage(pageNumber) {
-            return pageNumber + ' rows per page';
-        },
-        formatShowingRows: function formatShowingRows(pageFrom, pageTo, totalRows) {
-            return 'Showing ' + pageFrom + ' to ' + pageTo + ' of ' + totalRows + ' rows';
-        },
-        formatSearch: function formatSearch() {
-            return 'Search';
-        },
-        formatNoMatches: function formatNoMatches() {
-            return 'No matching records found';
-        },
-        formatPaginationSwitch: function formatPaginationSwitch() {
-            return 'Hide/Show pagination';
-        },
-        formatRefresh: function formatRefresh() {
-            return 'Refresh';
-        },
-        formatToggle: function formatToggle() {
-            return 'Toggle';
-        },
-        formatColumns: function formatColumns() {
-            return 'Columns';
-        },
-        formatAllRows: function formatAllRows() {
-            return 'All';
-        },
-        formatExport: function formatExport() {
-            return 'Export data';
-        },
-        formatClearFilters: function formatClearFilters() {
-            return 'Clear filters';
-        }
-    };
+$(document).ready(function () {
+	$('#submitToReverse').click(function () {
+		toReverse();
+	});
+});
 
-    $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['en-US']);
-})(jQuery);
+/**
+ * Estorna um produto
+ */
+function toReverse() {
+	$('#progressModal').modal({ backdrop: 'static', keyboard: true, show: true });
+
+	var student = $('#toReverseForm').find('input[name="student"]').val();
+	var reversed_product = $('#toReverseForm').find('input[name="reversed_product"]').val();
+	var seller = $('#toReverseForm').find('input[name="seller"]').val();
+
+	var data = {
+		$class: 'org.transacoes.cantina.Estorno',
+		comprador: 'resource:org.transacoes.cantina.Aluno#' + student,
+		vendedor: 'resource:org.transacoes.cantina.Orgao#' + seller,
+		produtoEstornado: 'resource:org.transacoes.cantina.Produto#' + reversed_product
+	};
+	var baseUrlApi = document.head.querySelector('meta[name="api_blockchain"]').getAttribute('content');;
+	axios({
+		method: 'post',
+		url: baseUrlApi + '/Estorno',
+		headers: {
+			'Content-type': 'application/json',
+			'Accept': 'application/json'
+		},
+		data: JSON.stringify(data)
+	}).then(function (success) {
+		closeModal();
+
+		$.notify({ icon: "add_alert", message: "Produto estornado com sucesso!" }, { type: 'success', timer: 3000, placement: { from: 'top', align: 'right' } });
+
+		$(':input', '#toReverseForm').not(':button, :submit, :reset, :hidden').val('').prop('checked', false).prop('selected', false);
+	}).catch(function (error) {
+		closeModal();
+
+		$.notify({ icon: "add_alert", message: "Ocorreu um erro, não foi possível estornar o produto!" }, { type: 'danger', timer: 3000, placement: { from: 'top', align: 'right' } });
+	});
+}
+
+/**
+ * Fecha a modal de progresso
+ */
+function closeModal() {
+	setTimeout(function () {
+		$('#progressModal').modal('hide');
+	}, 500);
+}
 
 /***/ })
 

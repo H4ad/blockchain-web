@@ -47,6 +47,7 @@ mix.sass('resources/assets/sass/progressbar.scss', 'public/css');
 mix.js('resources/assets/js/views/management/product/exchange.js', 'public/js/views/management/product/');
 mix.js('resources/assets/js/views/management/product/add.js', 'public/js/views/management/product/');
 mix.js('resources/assets/js/views/management/product/list.js', 'public/js/views/management/product/');
+mix.js('resources/assets/js/views/management/product/to_reverse.js', 'public/js/views/management/product/');
 
 /*
  * Traduções

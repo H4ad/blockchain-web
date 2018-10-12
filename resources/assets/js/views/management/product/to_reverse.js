@@ -1,41 +1,34 @@
 /**
- * Script para realizar a adição de um produto
+ * Script para realizar o estorno de algum produto
  */
 
 $(document).ready(function(){
-	$('#submitAddProduct').click(function(){
-	   add();
+	$('#submitToReverse').click(function(){
+	   toReverse();
 	});
 });
 
 /**
- * Adiciona um produto
+ * Estorna um produto
  */
-function add()
+function toReverse()
 {
 	$('#progressModal').modal({ backdrop: 'static', keyboard: true, show: true});
 
-	let type = $('#addProductForm').find('input[name="type"]').val();
-	let description = $('#addProductForm').find('input[name="description"]').val();
-	let value = $('#addProductForm').find('input[name="value"]').val();
-	let status = $('#selectStatus option:selected').text();
-	let owner = $('#addProductForm').find('input[name="owner"]').val();
-	let productId = UUID.generate();
+	let student = $('#toReverseForm').find('input[name="student"]').val();
+	let reversed_product = $('#toReverseForm').find('input[name="reversed_product"]').val();
+	let seller = $('#toReverseForm').find('input[name="seller"]').val();
 
-	let data = {
-		$class: 'org.transacoes.cantina.Produto',
-		ProdutoId: productId,
-		tipo: type,
-		descricao: description,
-		valor: value,
-		status: status,
-		proprietario: owner
+	const data = {
+		$class: 'org.transacoes.cantina.Estorno',
+		comprador: 'resource:org.transacoes.cantina.Aluno#' + student,
+		vendedor: 'resource:org.transacoes.cantina.Orgao#' + seller,
+		produtoEstornado: 'resource:org.transacoes.cantina.Produto#' + reversed_product
 	};
-
 	let baseUrlApi = document.head.querySelector('meta[name="api_blockchain"]').getAttribute('content');
 	axios({
     	method: 'post',
-    	url: baseUrlApi + '/Produto',
+    	url: baseUrlApi + '/Estorno',
     	headers: {
     		'Content-type' : 'application/json',
     		'Accept': 'application/json'
@@ -45,11 +38,11 @@ function add()
     	closeModal();
 
     	$.notify(
-			{ icon: "add_alert", message: "Produto adicionado com sucesso!" },
+			{ icon: "add_alert", message: "Produto estornado com sucesso!" },
 			{ type: 'success', timer: 3000, placement: { from: 'top', align: 'right' } }
 		);
 
-		$(':input','#addProductForm')
+		$(':input','#toReverseForm')
 		  .not(':button, :submit, :reset, :hidden')
 		  .val('')
 		  .prop('checked', false)
@@ -59,12 +52,15 @@ function add()
     	closeModal();
 
     	$.notify(
-			{ icon: "add_alert", message: "Ocorreu um erro, não foi possível adicionar o produto!" },
+			{ icon: "add_alert", message: "Ocorreu um erro, não foi possível estornar o produto!" },
 			{ type: 'danger', timer: 3000, placement: { from: 'top', align: 'right' } }
 		);
     });
 }
 
+/**
+ * Fecha a modal de progresso
+ */
 function closeModal()
 {
     setTimeout(function() {

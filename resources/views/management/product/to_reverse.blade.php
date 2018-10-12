@@ -12,7 +12,7 @@ $name = trans('messages.canteen');
 			<p class="card-category">{{ trans('messages.to_reverse_product_text_01') }}</p>
 		</div>
 		<div class="card-body">
-			<form method="POST" action="{{ route('estornar') }}">
+			<form id="toReverseForm">
 				<div class="input-group col-md-6 mt-3">
 					<div class="input-group-prepend">
 				    	<span class="input-group-text">
@@ -36,10 +36,18 @@ $name = trans('messages.canteen');
 	                </div>
 	            </div>
 
+	           <input name="seller" type="hidden" value="{{ sprintf("%06s", \Auth::user()->id) }}"/>
 				<div class="float-sm-right">
-					<button type="submit" class="btn btn-info">{{ trans('messages.to_reverse') }}</button>
+					<button id="submitToReverse" type="button" class="btn btn-info">{{ trans('messages.to_reverse') }}</button>
 				</div>
 			</form>
+
+			@include('management.modals.progress')
 		</div>
 	</div>
 @endsection
+
+@push('scripts')
+{{-- Script para realizar o estorno --}}
+<script src="{{ asset('js/views/management/product/to_reverse.js') }}"></script>
+@endpush

@@ -8,6 +8,7 @@
     "/js/bootstrap.js": "/js/bootstrap.js",
     "/js/jquery.magnific-popup.min.js": "/js/jquery.magnific-popup.min.js",
     "/js/jquery.magnific-popup.js": "/js/jquery.magnific-popup.js",
+    "/js/views/management/product/to_reverse.js": "/js/views/management/product/to_reverse.js",
     "/js/views/management/product/list.js": "/js/views/management/product/list.js",
     "/js/views/management/product/exchange.js": "/js/views/management/product/exchange.js",
     "/js/views/management/product/add.js": "/js/views/management/product/add.js",
