@@ -19,7 +19,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $role = 'student';
+    protected $role = 'canteen';
 
     /**
      * Where to redirect users after registration.
