@@ -93,20 +93,20 @@ $(document).ready(function () {
 
 		if (participant_type != 'Aluno') participant_type = 'Orgao';
 
-		axios({
-			method: 'get',
-			url: 'http://localhost:3000/api/' + participant_type + '/' + participant_id,
-			headers: {
-				'Accept': 'application/json'
-			}
-		}).then(function (response) {
-			$('#progressIdentifierText').text('Finalizando, estamos armazenando sua identificação...');
-			saveBlockchainUser(response.data.ParticipanteId);
-		}).catch(function (error) {
+		if (isEmptyOrSpaces(participant_id) || participant_id == undefined) {
 			getBlockchainUser();
-		});
+		} else {
+			saveBlockchainUser(participant_id);
+		}
 	});
 });
+
+/**
+ * Verifica se existe espaços em branco
+ */
+function isEmptyOrSpaces(str) {
+	return str === null || str.match(/^ *$/) !== null;
+}
 
 /**
  * Caso não haja um usuário com o mesmo id, ele pede para o Laravel retornar um válido e então tenta registrar na Blockchain
@@ -137,7 +137,7 @@ function saveBlockchain(response) {
 		tipo: response.data.tipo,
 		descricao: response.data.descricao,
 		carteira: response.data.carteira,
-		ParticipanteId: response.data.ParticipanteId
+		ParticipanteId: UUID.generate()
 	};
 
 	axios({
@@ -190,7 +190,7 @@ function showSuccessfulMessage() {
 	});
 
 	$('#progressIdentifierText').text('Finalizado, agora você pode realizar as ações normalmente!');
-	setTImeout(function () {
+	setTimeout(function () {
 		$('#exampleModalLong').modal('hide');
 	}, 500);
 }
@@ -210,7 +210,7 @@ function showErrorMessage() {
 	});
 
 	$('#progressIdentifierText').text('Um erro ocorreu, tente novamente!');
-	setTImeout(function () {
+	setTimeout(function () {
 		$('#exampleModalLong').modal('hide');
 	}, 500);
 }

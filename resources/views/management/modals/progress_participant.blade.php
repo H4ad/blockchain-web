@@ -1,5 +1,4 @@
 @push('css')
-<meta name="participant_id" content="{{ sprintf("%06s", \Auth::user()->id) }}">
 <meta name="participant_type" content="{{ \Auth::user()->getTypeByRole() }}">
 @endpush
 
@@ -22,5 +21,8 @@
 </div>
 
 @push('scripts')
+{{-- Script para adicionar um produto --}}
+<script src="{{ asset('js/UUID.js') }}" type="text/javascript"></script>
+
 <script src="{{ asset('js/views/management/blockchain/getAlunoInfo.js') }}"></script>
 @endpush

@@ -49,7 +49,6 @@ class ManagementController extends Controller
         $baseData = [
             '$class' => $user->getClassByRole(),
             'tipo' => $user->getTypeByRole(),
-            'ParticipanteId' => sprintf("%06s", $user->id),
             'carteira' => 0
         ];
 
@@ -79,11 +78,6 @@ class ManagementController extends Controller
     public function save_blockchain($participant_id)
     {
     	$user = Auth::user();
-
-        if($participant_id != sprintf("%06s", $user->id))
-            return response()->json([
-                'message' => 'Não foi possível realizar a ação, identificação não combina!'
-            ], 400);
 
         BlockchainUser::firstOrCreate([
             'participant_class' => $user->getClassByRole(),

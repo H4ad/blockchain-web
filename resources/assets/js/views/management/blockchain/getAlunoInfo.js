@@ -10,28 +10,21 @@ $(document).ready(function() {
 	$('#btnGetIdentity').click(function (){
 		$('#exampleModalLong').modal({backdrop: 'static', keyboard: false, show: true});
 
-		let participant_type = document.head.querySelector('meta[name="participant_type"]').getAttribute('content');;
 		let participant_id = document.head.querySelector('meta[name="participant_id"]').getAttribute('content');
 
-		if(participant_type != 'Aluno')
-			participant_type = 'Orgao';
-
-		axios({
-			method: 'get',
-			url: 'http://localhost:3000/api/' + participant_type + '/' +  participant_id,
-			headers: {
-		  		'Accept': 'application/json'
-		  	}
-	  	})
-		.then(response => {
-			$('#progressIdentifierText').text('Finalizando, estamos armazenando sua identificação...');
-		    saveBlockchainUser(response.data.ParticipanteId);
-		})
-		.catch(error => {
+		if(isEmptyOrSpaces(participant_id) || participant_id == undefined)
 			getBlockchainUser();
-		});
-	});
+		else
+			saveBlockchainUser(participant_id);
+	})
 });
+
+/**
+ * Verifica se existe espaços em branco
+ */
+function isEmptyOrSpaces(str){
+    return str === null || str.match(/^ *$/) !== null;
+}
 
 /**
  * Caso não haja um usuário com o mesmo id, ele pede para o Laravel retornar um válido e então tenta registrar na Blockchain
@@ -66,7 +59,7 @@ function saveBlockchain(response)
 		tipo: response.data.tipo,
 		descricao: response.data.descricao,
 		carteira: response.data.carteira,
-		ParticipanteId: response.data.ParticipanteId,
+		ParticipanteId: UUID.generate(),
 	};
 
 	axios({
