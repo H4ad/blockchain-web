@@ -4,11 +4,6 @@ $name = trans('messages.canteen');
 
 @extends('layouts.management.master')
 
-@push('css')
-{{-- Identificação do usuário --}}
-<meta name="participant_id" content="{{ sprintf("%06s", \Auth::user()->id) }}">
-@endpush
-
 @section('content')
 <div class="col-lg-12">
 	<div class="card">
