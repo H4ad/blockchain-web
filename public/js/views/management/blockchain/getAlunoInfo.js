@@ -88,16 +88,9 @@ $(document).ready(function () {
 	$('#btnGetIdentity').click(function () {
 		$('#exampleModalLong').modal({ backdrop: 'static', keyboard: false, show: true });
 
-		var participant_type = document.head.querySelector('meta[name="participant_type"]').getAttribute('content');;
 		var participant_id = document.head.querySelector('meta[name="participant_id"]').getAttribute('content');
 
-		if (participant_type != 'Aluno') participant_type = 'Orgao';
-
-		if (isEmptyOrSpaces(participant_id) || participant_id == undefined) {
-			getBlockchainUser();
-		} else {
-			saveBlockchainUser(participant_id);
-		}
+		if (isEmptyOrSpaces(participant_id) || participant_id == undefined) getBlockchainUser();else saveBlockchainUser(participant_id);
 	});
 });
 
